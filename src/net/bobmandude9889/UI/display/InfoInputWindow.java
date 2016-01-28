@@ -17,7 +17,7 @@ import net.bobmandude9889.bukkit.Util.Encrypt;
 import net.bobmandude9889.packetManager.connections.ConnectionHandlerType;
 import net.bobmandude9889.packetManager.connections.ConnectionManager;
 import net.bobmandude9889.packetManager.packets.IPacket;
-import net.bobmandude9889.packetManager.packets.listeners.VerifyPacket;
+import net.bobmandude9889.packetManager.packets.listeners.VerifyPassPacket;
 
 @SuppressWarnings("serial")
 public class InfoInputWindow extends JFrame implements ActionListener {
@@ -113,7 +113,7 @@ public class InfoInputWindow extends JFrame implements ActionListener {
 		if (cmd.equals(connect)) {
 			setStatus("Attempting to connect.");
 			if (ConnectionManager.init(ConnectionHandlerType.CLIENT)) {
-				VerifyPacket packet = (VerifyPacket) IPacket.SERVER.VERIFY.getListener();
+				VerifyPassPacket packet = (VerifyPassPacket) IPacket.SERVER.VERIFY_PASS.getListener();
 				String user = txtUser.getText();
 				String pass = txtPassword.getText();
 				System.out.println(pass);
