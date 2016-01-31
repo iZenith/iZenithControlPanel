@@ -26,16 +26,6 @@ public class Main extends JavaPlugin {
 		ConsoleLogAppender appender = new ConsoleLogAppender();
 		Logger logger = (Logger) LogManager.getRootLogger();
 		logger.addAppender(appender);
-		
-		/*conBuff = new File(getDataFolder(), "cmdbuff");
-		try {
-			if (!conBuff.exists())
-				conBuff.createNewFile();
-			OutputStream out = System.out;
-			System.setOut(new ConsoleOutputStream(out, conBuff));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
 
 		if (!getFile().exists()) {
 			getLogger().info("Generating config");

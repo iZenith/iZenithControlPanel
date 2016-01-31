@@ -13,7 +13,7 @@ import net.bobmandude9889.bukkit.Util.Encrypt;
 import net.bobmandude9889.packetManager.connections.ConnectionManager;
 import net.bobmandude9889.packetManager.packets.IPacket;
 
-public class VerifyPacket implements PacketListener {
+public class VerifyPassPacket implements PacketListener {
 
 	@Override
 	public void packetReceived(Packet packet, Connection conn) {
@@ -25,6 +25,7 @@ public class VerifyPacket implements PacketListener {
 			ConfigurationSection userS = users.getConfigurationSection(user);
 			String salt = userS.getString("salt");
 			String confPass = userS.getString("pass");
+			Boolean confirmed = userS.getBoolean("conf");
 			String encPass = Encrypt.encrypt2(pass, salt);
 			if(confPass.equals(encPass))
 				verified = true;
@@ -49,7 +50,7 @@ public class VerifyPacket implements PacketListener {
 
 	public void sendPacket(String username, String password) {
 		String encPass = Encrypt.md5(password);
-		Packet packet = new Packet(IPacket.SERVER.VERIFY.name());
+		Packet packet = new Packet(IPacket.SERVER.VERIFY_PASS.name());
 		packet.put("user", username);
 		packet.put("pass", encPass);
 		ConnectionManager.serverConn.sendPacket(packet);
