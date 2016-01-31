@@ -29,8 +29,15 @@ public class VerifyPacket implements PacketListener {
 			if(confPass.equals(encPass))
 				verified = true;
 		}
+		
+		System.out.println("Connection from " + conn + " username: " + user + " verified: " + verified);
+		
 		VerifiedPacket verPacket = (VerifiedPacket) IPacket.CLIENT.VERIFIED.getListener();
 		verPacket.sendPacket(verified, conn);
+		
+		PlayerListUpdatePacket listPacket = (PlayerListUpdatePacket) IPacket.CLIENT.PLAYER_LIST_UPDATE.getListener();
+		listPacket.sendPacket();
+		
 		if(!verified){
 			try {
 				conn.close();

@@ -29,7 +29,7 @@ public class MessageWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MessageWindow(Player p) {
+	public MessageWindow(final Player p) {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowListener(){
 

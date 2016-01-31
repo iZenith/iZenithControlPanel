@@ -51,7 +51,7 @@ public class PlayerScrollPanel extends JPanel {
 			}
 		}
 
-		for (Player p : accept) {
+		for (final Player p : accept) {
 			if (p.getName().contains(param)) {
 				Color back = Color.WHITE;
 				if (accept.indexOf(p) % 2 == 1) {

@@ -15,7 +15,7 @@ public class PlayerWindow extends JFrame {
 
 	private JPanel contentPane;
 	
-	public PlayerWindow(Player player) {
+	public PlayerWindow(final Player player) {
 		setTitle(player.getName());
 		setBounds(100, 100, 600, 600);
 		contentPane = new JPanel(){

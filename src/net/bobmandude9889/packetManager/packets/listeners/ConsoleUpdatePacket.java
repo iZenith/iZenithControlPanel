@@ -18,7 +18,7 @@ public class ConsoleUpdatePacket implements PacketListener {
 		String message = (String) packet.getValue("value");
 		Date time = Calendar.getInstance().getTime();
 		String formatted = "[" + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds() + " INFO]: " + message;
-		System.out.println(formatted);
+		System.out.println(formatted + "\r");
 	}
 
 	public void sendPacket(String message) throws IOException {

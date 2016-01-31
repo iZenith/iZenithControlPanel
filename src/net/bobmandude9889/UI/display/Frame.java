@@ -92,10 +92,10 @@ public class Frame extends JFrame {
 					File console = new File(file.getParentFile(), "Console.command");
 					PrintWriter fileOut = new PrintWriter(console);
 
-					fileOut.println("@echo off\n" + "cd \\\n" + "cd \"" + file.getParentFile().getPath() + "\"\n" + "java -jar \"" + file.getName() + "\" console\n" + "exit");
+					fileOut.println("#!/bin/bash\n" + "cd \"$(dirname \"$0\")\"\n" + "java -jar \"" + file.getName().replace(" ", "\\ ") + "\" console\n" + "exit");
 					fileOut.close();
 					Runtime rt = Runtime.getRuntime();
-					rt.exec("/usr/bin/open -a Terminal \"Console.command\" & exit");
+					rt.exec("/usr/bin/open -a Terminal Console.command & exit");
 				}
 			} catch (IOException e1) {
 				e1.printStackTrace();

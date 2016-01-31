@@ -11,7 +11,7 @@ import net.bobmandude9889.packetManager.connections.ConnectionManager;
 public class ServerCommandPacket implements PacketListener{
 	
 	@Override
-	public void packetReceived(Packet packet, Connection conn) {
+	public void packetReceived(final Packet packet, Connection conn) {
 		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable(){
 
 			@Override
