@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.util.Random;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
@@ -38,12 +39,14 @@ public class Frame extends JFrame {
 	public static JScrollPane scrollPane;
 	public static JLabel lblPlayersOnline;
 	private JTextField textPlayerSearch;
+	public JCheckBox chckbxDebug;
 	public static Frame instance;
 	public static InfoInputWindow info;
 	public static UserInputThread inputThreadRun;
 	public static Thread inputThread = null;
 
 	public static void main(String[] args) {
+		new RegisterUserWindow();
 		if (args == null || (args.length > 0 && args[0].equals("console"))) {
 			if (inputThread == null) {
 				inputThreadRun = new UserInputThread();
@@ -190,5 +193,9 @@ public class Frame extends JFrame {
 
 		});
 		mainPage.add(btnBroadcast);
+		
+		chckbxDebug = new JCheckBox("Debug");
+		chckbxDebug.setBounds(216, 341, 97, 23);
+		mainPage.add(chckbxDebug);
 	}
 }

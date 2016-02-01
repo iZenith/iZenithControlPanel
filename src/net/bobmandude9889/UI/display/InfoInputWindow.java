@@ -13,7 +13,6 @@ import javax.swing.border.EmptyBorder;
 
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
-import net.bobmandude9889.bukkit.Util.Encrypt;
 import net.bobmandude9889.packetManager.connections.ConnectionHandlerType;
 import net.bobmandude9889.packetManager.connections.ConnectionManager;
 import net.bobmandude9889.packetManager.packets.IPacket;
@@ -28,7 +27,9 @@ public class InfoInputWindow extends JFrame implements ActionListener {
 	public static JTextField txtUser;
 	public static JTextField txtPassword;
 	public static JLabel status;
-	private String connect = "connect";
+	private String connect = "conn";
+	private String register = "reg";
+	private JButton btnRegister;
 
 	public InfoInputWindow() {
 		setTitle("Info");
@@ -75,7 +76,7 @@ public class InfoInputWindow extends JFrame implements ActionListener {
 		contentPane.add(lblPassword);
 
 		JButton btnConnect = new JButton("Connect");
-		btnConnect.setBounds(10, 111, 264, 23);
+		btnConnect.setBounds(10, 111, 125, 23);
 		btnConnect.setActionCommand(connect);
 		btnConnect.addActionListener(this);
 		contentPane.add(btnConnect);
@@ -88,25 +89,31 @@ public class InfoInputWindow extends JFrame implements ActionListener {
 		txtPassword.setColumns(10);
 
 		status = new JLabel("Ready to connect");
-		status.setBounds(10,140,264,14);
+		status.setBounds(10, 140, 264, 14);
 		status.setHorizontalAlignment(JLabel.CENTER);
 		contentPane.add(status);
-		
+
+		btnRegister = new JButton("Register");
+		btnRegister.setBounds(149, 111, 125, 23);
+		btnRegister.setActionCommand(register);
+		btnRegister.addActionListener(this);
+		contentPane.add(btnRegister);
+
 		setVisible(true);
 	}
 
-	public static void setStatus(String message){
+	public static void setStatus(String message) {
 		status.setText(message);
 	}
-	
-	public void openControlWindow(){
+
+	public void openControlWindow() {
 		Frame frame = new Frame();
 		frame.setLocation(this.getLocation());
 		this.dispose();
 		frame.setVisible(true);
 		Frame.instance = frame;
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
@@ -119,6 +126,16 @@ public class InfoInputWindow extends JFrame implements ActionListener {
 				System.out.println(pass);
 				System.out.println(pass);
 				packet.sendPacket(user, pass);
+			} else {
+				setStatus("Could not connect.");
+			}
+		} else if (cmd.equals(register)) {
+			setStatus("Attempting to connect.");
+			if (ConnectionManager.init(ConnectionHandlerType.CLIENT)) {
+				setStatus("Registering user.");
+				RegisterUserWindow regWin = RegisterUserWindow.instance;
+				regWin.registerMode();
+				regWin.setVisible(true);
 			} else {
 				setStatus("Could not connect.");
 			}

@@ -1,5 +1,6 @@
 package net.bobmandude9889.packetManager.packets.listeners;
 
+import net.bobmandude9889.UI.display.RegisterUserWindow;
 import net.bobmandude9889.api.Connection;
 import net.bobmandude9889.api.Packet;
 import net.bobmandude9889.api.PacketListener;
@@ -9,7 +10,8 @@ public class VerificationRequestPacket implements PacketListener {
 
 	@Override
 	public void packetReceived(Packet packet, Connection conn) {
-		// TODO
+		RegisterUserWindow regWin = RegisterUserWindow.instance;
+		regWin.verifyMode();
 	}
 
 	public void sendPacket(Connection conn){

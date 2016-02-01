@@ -1,5 +1,7 @@
 package net.bobmandude9889.packetManager.packets.listeners;
 
+import javax.swing.JOptionPane;
+
 import net.bobmandude9889.api.Connection;
 import net.bobmandude9889.api.Packet;
 import net.bobmandude9889.api.PacketListener;
@@ -9,7 +11,7 @@ public class UserRegisterErrorPacket implements PacketListener{
 
 	@Override
 	public void packetReceived(Packet packet, Connection conn) {
-		// TODO handle error
+		JOptionPane.showMessageDialog(null, packet.getValue("msg"), "Error", 0);
 	}
 
 	public void sendPacket(String message, Connection conn){

@@ -2,6 +2,7 @@ package net.bobmandude9889.packetManager.packets.listeners;
 
 import net.bobmandude9889.UI.display.Frame;
 import net.bobmandude9889.UI.display.InfoInputWindow;
+import net.bobmandude9889.UI.display.RegisterUserWindow;
 import net.bobmandude9889.api.Connection;
 import net.bobmandude9889.api.Packet;
 import net.bobmandude9889.api.PacketListener;
@@ -19,6 +20,7 @@ public class VerifiedPacket implements PacketListener {
 		} else {
 			InfoInputWindow.setStatus("Verified");
 			Frame.instance.info.openControlWindow();
+			RegisterUserWindow.instance.setVisible(false);
 		}
 	}
 

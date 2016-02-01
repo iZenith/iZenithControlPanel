@@ -8,9 +8,10 @@ import net.bobmandude9889.packetManager.packets.listeners.RegisterUserPacket;
 import net.bobmandude9889.packetManager.packets.listeners.ServerClosingPacket;
 import net.bobmandude9889.packetManager.packets.listeners.ServerCommandPacket;
 import net.bobmandude9889.packetManager.packets.listeners.UserRegisterErrorPacket;
-import net.bobmandude9889.packetManager.packets.listeners.VerifiedPacket;
-import net.bobmandude9889.packetManager.packets.listeners.VerifyPassPacket;
 import net.bobmandude9889.packetManager.packets.listeners.VerificationRequestPacket;
+import net.bobmandude9889.packetManager.packets.listeners.VerifiedPacket;
+import net.bobmandude9889.packetManager.packets.listeners.VerifyCodePacket;
+import net.bobmandude9889.packetManager.packets.listeners.VerifyPassPacket;
 
 public class IPacket {
 	
@@ -20,6 +21,7 @@ public class IPacket {
 		SERVER_COMMAND(new ServerCommandPacket()),
 		PLAYER_MSG(new PlayerMsgPacket()),
 		VERIFY_PASS(new VerifyPassPacket()),
+		VERIFY_CODE(new VerifyCodePacket()),
 		REGISTER_USER(new RegisterUserPacket());
 		
 		PacketListener listener;

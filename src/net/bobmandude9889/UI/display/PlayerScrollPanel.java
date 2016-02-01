@@ -65,7 +65,9 @@ public class PlayerScrollPanel extends JPanel {
 					public void actionPerformed(ActionEvent arg0) {
 						ServerCommandPacket packet = (ServerCommandPacket) IPacket.SERVER.SERVER_COMMAND.getListener();
 						String reason = JOptionPane.showInputDialog(null, "Enter a reason");
-						packet.sendPacket("kick " + p.getName() + " " + reason);
+						if(reason != null){
+							packet.sendPacket("kick " + p.getName() + " " + reason);
+						}
 					}
 				});
 				kickBtn.setBounds(60, 15 + sectionHeight * accept.indexOf(p), 57, 23);

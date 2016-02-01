@@ -31,7 +31,7 @@ public class VerifyPassPacket implements PacketListener {
 				verified = true;
 		}
 		
-		System.out.println("Connection from " + conn + " username: " + user + " verified: " + verified);
+		System.out.println("Connection from " + conn.getTCPSocket().getInetAddress() + " username: " + user + " verified: " + verified);
 		
 		VerifiedPacket verPacket = (VerifiedPacket) IPacket.CLIENT.VERIFIED.getListener();
 		verPacket.sendPacket(verified, conn);
