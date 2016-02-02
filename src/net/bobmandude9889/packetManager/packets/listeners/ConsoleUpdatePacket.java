@@ -25,7 +25,7 @@ public class ConsoleUpdatePacket implements PacketListener {
 		if (ConnectionManager.isConnected()) {
 			Packet packet = new Packet(IPacket.CLIENT.CONSOLE_UPDATE.name());
 			packet.put("value", message);
-			ConnectionManager.server.broadcast(packet);
+			ConnectionManager.verificationFilter.broadcastPacket(packet);
 		}
 	}
 

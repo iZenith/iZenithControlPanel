@@ -9,6 +9,7 @@ import net.bobmandude9889.api.PacketHandler;
 import net.bobmandude9889.api.PacketListener;
 import net.bobmandude9889.packetManager.packets.IPacket;
 import net.bobmandude9889.packetManager.packets.listeners.PacketDebugListener;
+import net.bobmandude9889.packetManager.packets.listeners.UserVerificationFilter;
 
 public class ConnectionManager {
 
@@ -17,21 +18,20 @@ public class ConnectionManager {
 	public static ConnectionServer server;
 	public static Connection serverConn;
 	public static PacketListener debugListener;
+	public static UserVerificationFilter verificationFilter;
 
 	private static boolean connected = false;
 
 	public static boolean init(ConnectionHandlerType connType) {
 		debugListener = new PacketDebugListener();
+		verificationFilter = new UserVerificationFilter();
 		if (!connected) {
 			type = connType;
 
 			packetHandler = new PacketHandler();
 
 			if (connType.equals(ConnectionHandlerType.SERVER)) {
-				packetHandler.addListener("*", debugListener);
-				for (IPacket.SERVER packet : IPacket.SERVER.values()) {
-					packetHandler.addListener(packet.name(), packet.getListener());
-				}
+				packetHandler.addListener("*", verificationFilter);
 			} else {
 				packetHandler.addListener("*", debugListener);
 				for (IPacket.CLIENT packet : IPacket.CLIENT.values()) {

@@ -46,6 +46,7 @@ public class RegisterUserPacket implements PacketListener {
 				userSect.set("pass", Encrypt.encrypt2(pass, salt));
 				userSect.set("conf", false);
 				userSect.set("code", encVerCode);
+				Config.saveUsers();
 				
 				VerificationRequestPacket verifReq = (VerificationRequestPacket) IPacket.CLIENT.VERIFICATION_REQUEST.getListener();
 				verifReq.sendPacket(conn);

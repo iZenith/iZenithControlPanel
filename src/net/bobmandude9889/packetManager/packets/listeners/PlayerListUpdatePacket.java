@@ -32,7 +32,7 @@ public class PlayerListUpdatePacket implements PacketListener{
 		}
 		packet.put("players", playerNames);
 		System.out.println(playerNames);
-		ConnectionManager.server.broadcast(packet);
+		ConnectionManager.verificationFilter.broadcastPacket(packet);
 	}
 	
 }

@@ -21,7 +21,7 @@ public class ServerClosingPacket implements PacketListener{
 
 	public Packet sendPacket(){
 		Packet packet = new Packet(IPacket.CLIENT.SERVER_CLOSING.name());
-		ConnectionManager.server.broadcast(packet);
+		ConnectionManager.verificationFilter.broadcastPacket(packet);
 		return packet;
 	}
 	

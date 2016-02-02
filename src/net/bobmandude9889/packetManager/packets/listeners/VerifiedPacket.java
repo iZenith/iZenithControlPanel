@@ -6,6 +6,7 @@ import net.bobmandude9889.UI.display.RegisterUserWindow;
 import net.bobmandude9889.api.Connection;
 import net.bobmandude9889.api.Packet;
 import net.bobmandude9889.api.PacketListener;
+import net.bobmandude9889.bukkit.Users.UserManager;
 import net.bobmandude9889.packetManager.connections.ConnectionManager;
 import net.bobmandude9889.packetManager.packets.IPacket;
 
@@ -27,7 +28,7 @@ public class VerifiedPacket implements PacketListener {
 	public void sendPacket(boolean verified, Connection conn) {
 		Packet packet = new Packet(IPacket.CLIENT.VERIFIED.name());
 		packet.put("verified", verified);
-		conn.sendPacket(packet);
+		ConnectionManager.verificationFilter.sendPacket(packet, conn);
 	}
 
 }

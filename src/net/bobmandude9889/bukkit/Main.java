@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import net.bobmandude9889.bukkit.Listeners.PlayerListener;
+import net.bobmandude9889.bukkit.Users.UserManager;
 import net.bobmandude9889.bukkit.console.ConsoleLogAppender;
 import net.bobmandude9889.packetManager.connections.ConnectionHandlerType;
 import net.bobmandude9889.packetManager.connections.ConnectionManager;
@@ -33,6 +34,7 @@ public class Main extends JavaPlugin {
 		saveDefaultConfig();
 		instance = this;
 		config = getConfig();
+		UserManager.init();
 		if (!ConnectionManager.isConnected()) {
 			getLogger().info("Initialized connection server...");
 			if (ConnectionManager.init(ConnectionHandlerType.SERVER)) {

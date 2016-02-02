@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import net.bobmandude9889.api.Connection;
 import net.bobmandude9889.api.Packet;
 import net.bobmandude9889.api.PacketListener;
+import net.bobmandude9889.bukkit.Users.UserManager;
 import net.bobmandude9889.bukkit.Util.Config;
 import net.bobmandude9889.bukkit.Util.Encrypt;
 import net.bobmandude9889.packetManager.connections.ConnectionManager;
@@ -27,11 +28,14 @@ public class VerifyPassPacket implements PacketListener {
 			String confPass = userS.getString("pass");
 			Boolean confirmed = userS.getBoolean("conf");
 			String encPass = Encrypt.encrypt2(pass, salt);
+			
 			if(confPass.equals(encPass))
 				verified = true;
 		}
 		
 		System.out.println("Connection from " + conn.getTCPSocket().getInetAddress() + " username: " + user + " verified: " + verified);
+		
+		UserManager.addUser(conn.getTCPSocket().getInetAddress(), user);
 		
 		VerifiedPacket verPacket = (VerifiedPacket) IPacket.CLIENT.VERIFIED.getListener();
 		verPacket.sendPacket(verified, conn);

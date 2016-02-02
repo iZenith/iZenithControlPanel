@@ -110,7 +110,7 @@ public class RegisterUserWindow extends JFrame implements ActionListener {
 			if (name.getText().length() > 0 && pass.getText().length() > 0 && passConf.getText().length() > 0) {
 				if (pass.getText().equals(passConf.getText())) {
 					RegisterUserPacket regPack = (RegisterUserPacket) IPacket.SERVER.REGISTER_USER.getListener();
-					regPack.sendPacket(name.getText(), Encrypt.md5(pass.getText()));
+					regPack.sendPacket(name.getText(), pass.getText());
 				} else {
 					JOptionPane.showMessageDialog(null,"Passwords do not match!","Error",0);
 				}

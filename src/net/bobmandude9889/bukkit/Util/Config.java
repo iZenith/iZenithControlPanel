@@ -41,7 +41,15 @@ public class Config {
 		} else if (Frame.instance != null) {
 			return Frame.instance.chckbxDebug.isSelected();
 		} else {
-			return false;
+			return true;
+		}
+	}
+	
+	public static void saveUsers(){
+		try {
+			userFile.save(file);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	

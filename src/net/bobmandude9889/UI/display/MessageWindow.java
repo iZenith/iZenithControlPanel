@@ -86,7 +86,7 @@ public class MessageWindow extends JFrame {
 				String message = textField.getText();
 				boolean show = showName.isSelected();
 				PlayerMsgPacket packet = (PlayerMsgPacket) IPacket.SERVER.PLAYER_MSG.getListener();
-				packet.sendPacket(message,show,p,null);
+				packet.sendPacket(message,show,p);
 				setVisible(false);
 				dispose();
 			}
