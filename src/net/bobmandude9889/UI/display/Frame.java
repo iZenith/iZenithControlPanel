@@ -42,11 +42,40 @@ public class Frame extends JFrame {
 	public JCheckBox chckbxDebug;
 	public static Frame instance;
 	public static InfoInputWindow info;
+	public static ConsoleWindow console;
 	public static UserInputThread inputThreadRun;
 	public static Thread inputThread = null;
 
 	public static void main(String[] args) {
 		new RegisterUserWindow();
+	}
+
+	private void setupCustomConsole(){
+		if (inputThread == null) {
+			inputThreadRun = new UserInputThread();
+			inputThread = new Thread(inputThreadRun);
+			inputThread.start();
+		}
+
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					try {
+						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+						e.printStackTrace();
+					}
+					info = new InfoInputWindow();
+					console = new ConsoleWindow();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	@Deprecated
+	private void setupSystemConsole(String[] args){
 		if (args == null || (args.length > 0 && args[0].equals("console"))) {
 			if (inputThread == null) {
 				inputThreadRun = new UserInputThread();
@@ -105,7 +134,7 @@ public class Frame extends JFrame {
 			}
 		}
 	}
-
+	
 	public Frame() {
 		setResizable(false);
 		setTitle("Server Control Panel");
